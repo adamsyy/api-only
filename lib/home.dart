@@ -1,3 +1,4 @@
+import 'package:apionly/news.dart';
 import 'package:flutter/material.dart';
 
 import 'movie.dart';
@@ -22,9 +23,9 @@ class Homed extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 10,top: 10),
-            child: ElevatedButton(onPressed: (){
+            child: ElevatedButton(onPressed: (){   print('kjh');
               Navigator.push(context, MaterialPageRoute(builder: (context){
-                return Tinder();
+                return News();
               }));
             },style: ElevatedButton.styleFrom(primary: Colors.black),
                 child: Text('News')),
