@@ -20,8 +20,10 @@ class Tinder extends StatelessWidget {
       body: FutureBuilder(
           future: fetchmovies(),
           builder: (BuildContext context, AsyncSnapshot snapshot){
+
             if(snapshot.hasData){
-              return ListView.builder(itemCount: snapshot.data.length,itemBuilder: (BuildContext context,int index){
+              return ListView.builder(
+                  itemCount: (snapshot.data.length-1),itemBuilder: (BuildContext context,int index){
                 return Row(
                   children: [
                     Container(height: 250,alignment:Alignment.centerLeft,
@@ -42,8 +44,13 @@ class Tinder extends StatelessWidget {
                     ),
                   ],
                 );
+                // if(index>(snapshot.data.length-1)){
+                //   index=1;
+                // }
               });
             }
+
+
             return Center(child: CircularProgressIndicator(),);
           }
 
