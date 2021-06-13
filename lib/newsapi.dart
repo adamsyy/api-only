@@ -4,12 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
 import 'newsinfo.dart';
+import 'newsinfo.dart';
+import 'newsinfo.dart';
+import 'newsinfo.dart';
 
-Future<Welcome> getnews()async{
+Future<List<Welcome>> getnews()async{
+  print("get news called");
   final client=await get(Uri.parse('https://jsonplaceholder.typicode.com/posts'));
-  var json=jsonDecode(client.body);
-  var welocomemodel=Welcome.fromJson(json);
-  print(welocomemodel);
+  // var json=jsonDecode(client.body);
+  // print("json is:${json}");
+  List<Welcome> welocomemodel=welcomeFromJson(client.body);
+  // print("welcome model is :${welocomemodel}");
   return welocomemodel;
 
 

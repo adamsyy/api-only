@@ -2,7 +2,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
-class Tinder extends StatelessWidget {
+class Tinder extends StatefulWidget {
+  @override
+  _TinderState createState() => _TinderState();
+}
+
+class _TinderState extends State<Tinder> {
   fetchmovies()async{
     var url;
     url=await get(Uri.parse('https://api.themoviedb.org/3/movie/now_playing?api_key=5f6f334d30e8d1d3ed12b35ba787d10a&language=en-US&page=1'));
