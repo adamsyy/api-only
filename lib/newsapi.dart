@@ -1,4 +1,16 @@
-class Strings{
+import 'dart:convert';
 
-  static String url='https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=f57f267ec40b4a7684b4d06f23c3af4b';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+
+import 'newsinfo.dart';
+
+Future<Welcome> getnews()async{
+  final client=await get(Uri.parse('https://jsonplaceholder.typicode.com/posts'));
+  var json=jsonDecode(client.body);
+  var welocomemodel=Welcome.fromJson(json);
+  print(welocomemodel);
+  return welocomemodel;
+
+
 }

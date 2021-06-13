@@ -13,14 +13,13 @@ class News extends StatefulWidget {
 
 class _NewsState extends State<News> {
 
+late Future <Welcome> _welcome;
 
-getnews()async{
-    final client=await get(Uri.parse(Strings.url));
-    var json=jsonDecode(client.body);
-      print(json["articles"][1]);
+@override
+  void initState() {
+    super.initState();
 
-
-   return json;
+    _welcome=getnews();
 
   }
 
@@ -28,28 +27,30 @@ getnews()async{
   Widget build(BuildContext context) {
     return Scaffold(appBar: AppBar(title: Text('News'),),
       body: Container(
-        child: FutureBuilder(future: getnews(),builder:(BuildContext context,AsyncSnapshot snapshot){
-          if(snapshot.hasError){print('hlo');}
+        child: FutureBuilder<Welcome>(future: _welcome,builder:(BuildContext context,AsyncSnapshot snapshot){
+
     if(snapshot.hasData){
-    return ListView.builder(itemCount:snapshot.data.length,itemBuilder: (BuildContext context,int index){
+    return ListView.builder(itemCount: snapshot.data.length,itemBuilder: (BuildContext context,int index){
     return Container(
     child:Row(
     children: [
-    Text(snapshot.data["articles"][index]["source"].toString())
+    Text('hlo'),
     ],
     ) ,
     );
     });
+
 
     }
 
         return CircularProgressIndicator();} ,
 
         ),
+
       ),
 floatingActionButton: FloatingActionButton(
-  child: Text('hlo'),onPressed: ()async{ print('hlooooo');
-    await getnews();
+  child: Text('hlo'),onPressed: ()async{ await getnews();
+
 },
 ),
     );
